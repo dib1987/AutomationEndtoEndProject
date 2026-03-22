@@ -22,7 +22,7 @@ public class CheckOutPageTest extends BaseTest {
 		productInfoPage.selectViewItems();
 		checkoutPage = productInfoPage.selectViewCarts();
 
-		Assert.assertEquals(checkoutPage.getShoppingCardHeaderName(), "Shopping Cart");
+		Assert.assertEquals(checkoutPage.getShoppingCardHeaderName(), "Shopping Cart Checkout");
 	}
 
 }
