@@ -326,6 +326,57 @@ public class ElementUtil {
 		checkElementHighlight(element);
 		return element;
 	}
+	
+	/**
+	 * This method attempts to find a web element specified by the given locator 
+	 * within a specified timeout. If the element is not found, it retries after a 
+	 * specified interval (5 seconds) until the timeout is reached.
+	 * 
+	 * @param locator the locator of the web element to be found
+	 * @param timeOut the maximum time (in seconds) to keep trying to find the element
+	 * @return the found WebElement or null if not found within the timeout
+	 */
+	
+	
+	public WebElement retryingElement(By locator, int timeOut) {
+		WebElement element = null;
+		int attempts = 0;
+		int interval = 5000; // Retry interval in milliseconds
+
+		while (attempts < timeOut) {
+
+			try {
+				element = getElement(locator);
+
+				System.out.println("element is found...." + locator + "in attempt:" + attempts);
+				break;
+			} catch (NoSuchElementException e) {
+
+				System.out.println("element is not found...." + locator + "in attempt:" + attempts);
+
+				try {
+					Thread.sleep(interval);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			attempts++;
+
+		}
+		if (element == null) {
+
+			System.out.println(
+					"element is not found....tried for " + timeOut + "sec" + "with the interval of 500 milliseconds");
+
+		}
+		return element;
+	}
+		
+	
+		
+		
+	
 
 	/**
 	 * An expectation for checking that an element is present on the DOM of a page

@@ -17,7 +17,7 @@ public class AccountsPage {
 	private By logoutLink = By.linkText("Logout");
 	private By headers = By.cssSelector("div#content h2");
 	private By search = By.name("search");
-	private By searchIcon = By.cssSelector("div#search button");
+	private By searchIcon = By.cssSelector("div#search Button");
 
 	public AccountsPage(WebDriver driver) {
 		this.driver = driver;
